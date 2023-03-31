@@ -1,0 +1,48 @@
+@startuml
+mainframe Storage
+class Package {
+    - {static} assignedIDs_: set<ElementID>
+    - {static} freedIDs_: set<elementID>
+    - elementID_: ElementID
+    + Package()
+    + Package(ElementID)
+    + Package(Package&&)
+    + operator=(Package&&): Package&
+    + get_id(): ElementID {query}
+    + ~Package()
+}
+
+interface IPackageStockpile <<interface>> {
+    + {abstract} push(Package&&): void{query}
+    + {abstract} empty(): bool {query}
+    + {abstract} size(): size_type {query}
+    + {abstract} /iteratory/
+    + {abstract} ~IPackageStockpile()
+}
+
+interface IPackageQueue <<interface>> {
+    + {abstract} pop() : Package
+    + {abstract} get_queue_type(): PackageQueueType{query}
+}
+
+class PackageQueue {
+    - queue_: list<Package>
+    - queueType_: PackageQueueType
+    + {method} PackageQueue(PackageQueueType)
+}
+
+enum PackageQueueType <<enumeration>> {
+     FIFO
+     LIFO
+}
+
+
+class ElementId << (T,orchid) primitive>>{
+     ElementID: int
+}
+
+IPackageStockpile <|-- IPackageQueue
+IPackageQueue <|.. PackageQueue
+PackageQueue *-- Package
+PackageQueueType <.. IPackageQueue : <<uses>>
+@enduml

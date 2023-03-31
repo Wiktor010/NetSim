@@ -1,0 +1,9 @@
+
+Członkowie grupy:
+(1) Dawid Kopeć, 405602
+(2) Wiktor Wiernasiewicz, 405029
+(3) Michał Hesek, 406399
+
+Kierownik grupy: Dawid Kopeć
+
+URL repozytorium: https://github.com/dawkopagh/NetSim.git
